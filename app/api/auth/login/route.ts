@@ -1,13 +1,48 @@
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import bcrypt from 'bcryptjs';
-import { signToken } from '@/lib/auth';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+import { verifyPassword, generateToken } from "@/src/lib/auth";
+
+const prisma = new PrismaClient();
+
 export async function POST(req: Request) {
-  const { email, password } = await req.json();
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) return NextResponse.json({ error: 'Invalid' }, { status: 401 });
-  const ok = await bcrypt.compare(password, user.password);
-  if (!ok) return NextResponse.json({ error: 'Invalid' }, { status: 401 });
-  const token = signToken({ id: user.id, role: user.role, email: user.email });
-  return NextResponse.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+  try {
+    const { email, password } = await req.json();
+
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      return NextResponse.json({ success: false, message: "User not found" });
+    }
+
+    const valid = await verifyPassword(password, user.password);
+
+    if (!valid) {
+      return NextResponse.json({ success: false, message: "Invalid password" });
+    }
+
+    const token = generateToken({
+      id: user.id,
+      role: user.role,
+      email: user.email,
+    });
+
+    return NextResponse.json({
+      success: true,
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        name: user.name,
+      },
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    return NextResponse.json(
+      { success: false, message: "Server Error" },
+      { status: 500 }
+    );
+  }
 }
