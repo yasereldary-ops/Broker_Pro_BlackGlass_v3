@@ -17,12 +17,11 @@ export async function POST(req: Request) {
     }
 
     const valid = await verifyPassword(password, user.password);
-
     if (!valid) {
       return NextResponse.json({ success: false, message: "Invalid password" });
     }
 
-    const token = generateToken({
+    const token = await generateToken({
       id: user.id,
       role: user.role,
       email: user.email,
