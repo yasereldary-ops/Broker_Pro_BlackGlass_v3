@@ -1,0 +1,10 @@
+{
+  "/not-found": "app/not-found.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/admin/clients/page": "app/admin/clients/page.js",
+  "/admin/sales/page": "app/admin/sales/page.js",
+  "/api/clients/route": "app/api/clients/route.js",
+  "/admin/properties/page": "app/admin/properties/page.js",
+  "/api/properties/route": "app/api/properties/route.js",
+  "/admin/settings/page": "app/admin/settings/page.js"
+}

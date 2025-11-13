@@ -1,0 +1,205 @@
+/* -------------------------------------------
+   💎 BlackGlass Neo — Unified Motion Edition
+   ------------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* 🩵 VARIABLES */
+:root {
+  --bg-gradient: linear-gradient(120deg, #071428, #0d2038, #02040a);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-hover: rgba(255, 255, 255, 0.08);
+  --text-primary: #e6eef8;
+  --text-secondary: #a3b9d4;
+  --accent-blue: #60a5fa;
+  --accent-green: #10b981;
+  --accent-gold: #facc15;
+  --transition: all 0.25s ease;
+}
+
+/* 🔷 BACKGROUND MOTION */
+@keyframes backgroundMotion {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 🩵 BODY */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--text-primary);
+}
+
+body {
+  background: var(--bg-gradient);
+  background-size: 200% 200%;
+  animation: backgroundMotion 18s ease-in-out infinite;
+  backdrop-filter: blur(6px);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+/* 🧊 GLASS CONTAINERS */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  transition: var(--transition);
+}
+.glass-card:hover {
+  background: var(--glass-hover);
+}
+
+/* 💸 BUTTONS */
+.btn {
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: var(--transition);
+  animation: glowPulse 5s ease-in-out infinite;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* 🔸 BUTTON GLOW */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(96, 165, 250, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+  }
+}
+
+/* 🧭 NAVBAR */
+.navbar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, 95%);
+  padding: 10px 22px;
+  border-radius: 14px;
+  background: rgba(10, 15, 25, 0.65);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(96, 165, 250, 0.1);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  animation: cardGlow 7s ease-in-out infinite;
+}
+
+/* 📊 TABLES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+th {
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+  transition: var(--transition);
+}
+
+/* 🔹 KPI CARDS */
+.kpi {
+  padding: 18px;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: var(--transition);
+  animation: cardGlow 6s ease-in-out infinite;
+}
+.kpi:hover {
+  transform: translateY(-5px);
+  background: var(--glass-hover);
+}
+
+/* ✨ CARD GLOW ANIMATION */
+@keyframes cardGlow {
+  0% {
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.15);
+  }
+}
+
+/* 🩵 FADE ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* 🌫️ SLIDE UP ENTRY */
+@keyframes slideUp {
+  0% {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.fade-slide {
+  animation: slideUp 0.8s ease forwards;
+}
+
+/* 🩵 SCROLLBAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1e3a8a, #60a5fa);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2563eb, #93c5fd);
+}
